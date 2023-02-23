@@ -1,0 +1,84 @@
+Arguments: 
+  /Users/kisn/.nvm/versions/node/v16.16.0/bin/node /opt/homebrew/Cellar/yarn/1.22.17/libexec/bin/yarn.js dev:ele
+
+PATH: 
+  /Users/kisn/Library/pnpm:/Users/kisn/.nvm/versions/node/v16.16.0/bin:/Users/kisn/.pnpm-store/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/kisn/.fig/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.16.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  SyntaxError: /Users/kisn/Desktop/leetcode/umi/package.json: Unexpected string in JSON at position 468
+      at JSON.parse (<anonymous>)
+      at /opt/homebrew/Cellar/yarn/1.22.17/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/opt/homebrew/Cellar/yarn/1.22.17/libexec/lib/cli.js:310:30)
+      at /opt/homebrew/Cellar/yarn/1.22.17/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "mofish",
+    "version": "1.0.0",
+    "private": true,
+    "description": "超时",
+    "author": "kaixin.yuan <szaf93671@126.com>",
+    "main": "build/main.js",
+    "scripts": {
+      "build": "max build",
+      "dev": "max dev",
+      "dev:ele": "concurrently \"cross-env UMI_ENV=pre npm run start\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron main.js\"",
+      "start:ele": "max build && cross-env NODE_ENV=production electron build/main.js"
+      "dist": "max build && electron-builder --mac",
+      "ele": "electron . & npm run start",
+      "format": "prettier --cache --write .",
+      "postinstall": "max setup",
+      "prepare": "husky install",
+      "setup": "max setup",
+      "start": "npm run dev",
+    },
+    "dependencies": {
+      "@ant-design/icons": "^4.7.0",
+      "@ant-design/pro-components": "^2.0.1",
+      "@umijs/max": "^4.0.52",
+      "antd": "^5.0.0",
+      "js-md5": "^0.7.3",
+      "wait-on": "^7.0.1"
+    },
+    "devDependencies": {
+      "@types/react": "^18.0.0",
+      "@types/react-dom": "^18.0.0",
+      "cross-env": "^7.0.3",
+      "electron": "^23.0.0",
+      "electron-builder": "^23.6.0",
+      "husky": "^8.0.1",
+      "joi": "^17.8.3",
+      "lint-staged": "^13.0.3",
+      "prettier": "^2.7.1",
+      "prettier-plugin-organize-imports": "^2",
+      "prettier-plugin-packagejson": "^2",
+      "typescript": "^4.1.2"
+    },
+    "build": {
+      "productName": "mofish",
+      "appId": "mofish",
+      "files": [
+        "build/**/*"
+      ],
+      "directories": {
+        "output": "dist"
+      },
+      "mac": {}
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
