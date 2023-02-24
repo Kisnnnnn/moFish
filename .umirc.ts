@@ -2,6 +2,7 @@ import { defineConfig } from '@umijs/max';
 
 const isDev = process.env.NODE_ENV === 'development';
 export default defineConfig({
+  alias: {},
   antd: {},
   access: {},
   model: {},
@@ -12,7 +13,7 @@ export default defineConfig({
   history: {
     type: 'hash',
   },
-  valtio: {},
+  dva: {},
   layout: {
     // 关闭国际化
     locale: false,
@@ -52,6 +53,11 @@ export default defineConfig({
       name: '翻译',
       path: '/translate',
       component: './Translate',
+    },
+    {
+      name: '设置工作时间',
+      path: '/settime',
+      component: './Time',
     },
     {
       path: '/*',

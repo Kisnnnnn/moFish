@@ -1,7 +1,7 @@
 declare module TranslateApi {
   interface baiduRequest {
     // 谷歌翻译
-    q?: string[]; // 翻译文字
+    q?: string; // 翻译文字
     target?: string; // 翻译目标
   }
   interface baiduResultDataItem {

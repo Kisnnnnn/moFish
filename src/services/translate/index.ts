@@ -20,5 +20,9 @@ export async function sentBaiDuTranlateText(
   return request<TranslateApi.baiduRequest>(baiduApi + requestParams, {
     method: 'GET',
     ...(options || {}),
+  }).catch((err) => {
+    const { message, code } = err;
+
+    return { message, code };
   });
 }

@@ -6,24 +6,24 @@
   "author": "kaixin.yuan <szaf93671@126.com>",
   "main": "build/main.js",
   "scripts": {
-    "build": "max build",
-    "dev": "max dev",
-    "dev:ele": "concurrently \"cross-env UMI_ENV=pre npm run start\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron main.js\"",
-    "start:ele": "max build && cross-env NODE_ENV=production electron build/main.js",
+    "dev": "concurrently \"cross-env UMI_ENV=pre max dev\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron public/main.js\"",
+    "start": "max build && cross-env NODE_ENV=production electron build/main.js",
     "dist": "max build && electron-builder --mac",
-    "ele": "electron . & npm run start",
+    "dev:umi": "max dev",
+    "build:umi": "max build",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "prepare": "husky install",
-    "setup": "max setup",
-    "start": "npm run dev"
+    "setup": "max setup"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.0.1",
     "@umijs/max": "^4.0.52",
     "antd": "^5.0.0",
+    "dayjs": "^1.11.7",
     "js-md5": "^0.7.3",
+    "localStorage": "^1.0.4",
     "wait-on": "^7.0.1"
   },
   "devDependencies": {

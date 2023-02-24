@@ -8,12 +8,14 @@ specifiers:
   '@umijs/max': ^4.0.52
   antd: ^5.0.0
   cross-env: ^7.0.3
+  dayjs: ^1.11.7
   electron: ^23.0.0
   electron-builder: ^23.6.0
   husky: ^8.0.1
   joi: ^17.8.3
   js-md5: ^0.7.3
   lint-staged: ^13.0.3
+  localStorage: ^1.0.4
   prettier: ^2.7.1
   prettier-plugin-organize-imports: ^2
   prettier-plugin-packagejson: ^2
@@ -25,7 +27,9 @@ dependencies:
   '@ant-design/pro-components': 2.3.57_antd@5.2.2
   '@umijs/max': 4.0.52_vftga3igpjiwrcdvxb4li5isbm
   antd: 5.2.2
+  dayjs: 1.11.7
   js-md5: 0.7.3
+  localStorage: 1.0.4
   wait-on: 7.0.1
 
 devDependencies:
@@ -8095,6 +8099,11 @@ packages:
   /local-pkg/0.4.3:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==}
     engines: {node: '>=14'}
+    dev: false
+
+  /localStorage/1.0.4:
+    resolution: {integrity: sha512-r35zrihcDiX+dqWlJSeIwS9nrF95OQTgqMFm3FB2D/+XgdmZtcutZOb7t0xXkhOEM8a9kpuu7cc28g1g36I5DQ==}
+    engines: {node: '>= v0.2.0'}
     dev: false
 
   /locate-path/5.0.0:
