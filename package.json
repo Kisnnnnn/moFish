@@ -49,8 +49,14 @@
     "directories": {
       "output": "dist"
     },
-    "mac": {},
+    "linux": {
+      "icon": "public/logo/icon_16.ico"
+    },
+    "mac": {
+      "icon": "public/logo/icon_16.ico"
+    },
     "win": {
+      "icon": "public/logo/icon_16.ico",
       "target": [
         "nsis",
         "7z",
@@ -58,6 +64,9 @@
       ]
     },
     "nsis": {
+      "installerIcon": "public/logo/logo.png",
+      "uninstallerIcon": "public/logo/logo.png",
+      "installerHeaderIcon": "public/logo/logo.png",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }
