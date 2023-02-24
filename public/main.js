@@ -5,8 +5,6 @@ const isDev = process.env.NODE_ENV === 'development';
 let mainWindow;
 
 function createWindow() {
-  // Menu.setApplicationMenu(null);
-
   //创建浏览器窗口,宽高自定义具体大小你开心就好
   mainWindow = new BrowserWindow({
     width: 800,
@@ -21,11 +19,12 @@ function createWindow() {
   if (isDev) {
     mainWindow.loadURL('http://localhost:8000/');
   } else {
+    Menu.setApplicationMenu(null);
+    // 打开开发者工具，默认不打开
+    mainWindow.webContents.openDevTools();
     mainWindow.loadFile(`${__dirname}/index.html`);
   }
 
-  // 打开开发者工具，默认不打开
-  mainWindow.webContents.openDevTools();
   // 关闭window时触发下列事件.
   mainWindow.on('closed', function () {
     mainWindow = null;

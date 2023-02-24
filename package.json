@@ -9,12 +9,15 @@
     "build:umi": "max build",
     "dev": "concurrently \"cross-env UMI_ENV=pre max dev\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron public/main.js\"",
     "dev:umi": "max dev",
-    "dist": "max build && electron-builder --mac",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
+    "linux": "electron-builder --linux",
+    "mac": "max build && electron-builder --mac",
     "prepare": "husky install",
     "setup": "max setup",
-    "start": "max build && cross-env NODE_ENV=production electron build/main.js"
+    "start": "max build && cross-env NODE_ENV=production electron build/main.js",
+    "win32": "max build && electron-builder --win --ia32",
+    "win64": "max build && electron-builder --win --x64"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
