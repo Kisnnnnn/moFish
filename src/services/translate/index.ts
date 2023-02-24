@@ -1,6 +1,6 @@
 /* eslint-disable */
 // 该文件由 OneAPI 自动生成，请勿手动修改！
-import { BAIDU_INFO } from '@/constants';
+import { BAIDU_INFO } from '@/constants/translateConfig';
 import { request } from '@umijs/max';
 import md5 from 'js-md5';
 const baiduApi = 'https://fanyi-api.baidu.com/api/trans/vip/translate?';
