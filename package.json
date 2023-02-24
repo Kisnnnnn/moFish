@@ -43,6 +43,7 @@
   "build": {
     "productName": "mofish",
     "appId": "mofish",
+    "asar": false,
     "files": [
       "build/**/*"
     ],
@@ -58,17 +59,24 @@
     "win": {
       "icon": "public/logo/icon_16.ico",
       "target": [
-        "nsis",
-        "7z",
-        "zip"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
       ]
     },
     "nsis": {
+      "allowElevation": true,
       "installerIcon": "public/logo/logo.png",
       "uninstallerIcon": "public/logo/logo.png",
       "installerHeaderIcon": "public/logo/logo.png",
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   }
 }

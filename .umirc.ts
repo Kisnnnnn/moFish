@@ -26,6 +26,7 @@ export default defineConfig({
     },
     {
       name: '首页',
+      icon: 'HomeOutlined',
       path: '/home',
       component: './Home',
     },
@@ -41,6 +42,7 @@ export default defineConfig({
     // },
     {
       name: '玩具',
+      icon: 'SmileOutlined',
       path: '/arder',
       component: './Arder',
       routes: [
@@ -52,6 +54,7 @@ export default defineConfig({
     },
     {
       name: '翻译',
+      icon: 'FieldStringOutlined',
       path: '/translate',
       component: './Translate',
     },
@@ -62,6 +65,7 @@ export default defineConfig({
     {
       name: '设置工作时间',
       path: '/settime',
+      icon: 'SettingOutlined',
       component: './Time',
     },
     {
