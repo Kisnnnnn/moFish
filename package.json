@@ -51,13 +51,13 @@
       "output": "dist"
     },
     "linux": {
-      "icon": "public/logo/icon_16.ico"
+      "icon": "public/logo/icon_round.png"
     },
     "mac": {
-      "icon": "public/logo/icon_16.ico"
+      "icon": "public/logo/icon_round.png"
     },
     "win": {
-      "icon": "public/logo/icon_16.ico",
+      "icon": "public/logo/icon_round.png",
       "target": [
         {
           "target": "nsis",

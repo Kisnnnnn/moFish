@@ -10,9 +10,8 @@ const tranlateScrcetKey = localStorage.getItem('tranlateScrcetKey');
 
 const setTranslateApi: React.FC = () => {
   const [appId, setAppId] = useState(tranlateAppId);
-  const [scrcetKey, setScrcetKey] = useState(
-    localStorage.getItem(tranlateScrcetKey),
-  );
+  const [scrcetKey, setScrcetKey] = useState(tranlateScrcetKey);
+
   // 去github查看说明文档
   const goGuide = () => {
     ipcRenderer.send(
@@ -27,9 +26,7 @@ const setTranslateApi: React.FC = () => {
       return;
     }
     localStorage.setItem('tranlateAppId', appId);
-    if (scrcetKey) {
-      localStorage.setItem('tranlateScrcetKey', scrcetKey);
-    }
+    localStorage.setItem('tranlateScrcetKey', scrcetKey);
     scrcetKey && appId && msgSuccess('设置成功!');
     setTimeout(() => {
       history.go(-1);
