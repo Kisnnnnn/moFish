@@ -1,6 +1,6 @@
 # moFish 小助手
 
-[](./public/logo/icon.jpeg)
+![](./public/logo/icon.jpeg)
 
 ## 如何获取百度翻译的`appid`和`密钥`
 
