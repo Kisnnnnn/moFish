@@ -1,10 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { connect, useModel } from '@umijs/max';
+import { connect, history } from '@umijs/max';
 import { Input, Button } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import './css/index.less';
-import { useState, ChangeEvent } from 'react';
-import { msgTransErr } from '@/utils/msg';
+import { useState } from 'react';
 const { TextArea } = Input;
 
 const masterProps = function (state: any) {
@@ -51,9 +50,15 @@ const Translate: React.FC = (props: any) => {
 
     dst && setChnText(dst);
   };
-
+  // 设置
+  const goSet = () => {
+    history.push('/translate/set');
+  };
   return (
     <PageContainer>
+      <Button className="btn-set" onClick={goSet}>
+        翻译API设置
+      </Button>
       <div className="frame">
         <TextArea
           className="trans-input"

@@ -1,14 +1,21 @@
-const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const url = require('url');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const isDev = process.env.NODE_ENV === 'development';
-
 // 保持window对象的全局引用,避免JavaScript对象被垃圾回收时,窗口被自动关闭.
 let mainWindow;
 
 function createWindow() {
+  // Menu.setApplicationMenu(null);
+
   //创建浏览器窗口,宽高自定义具体大小你开心就好
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true, // 是否集成 Nodejs
+      contextIsolation: false,
+    },
+  });
   // 加载应用----适用于 react 项目
   if (isDev) {
     mainWindow.loadURL('http://localhost:8000/');
@@ -18,7 +25,6 @@ function createWindow() {
 
   // 打开开发者工具，默认不打开
   mainWindow.webContents.openDevTools();
-
   // 关闭window时触发下列事件.
   mainWindow.on('closed', function () {
     mainWindow = null;
@@ -40,5 +46,20 @@ app.on('activate', function () {
   // macOS中点击Dock图标时没有已打开的其余应用窗口时,则通常在应用中重建一个窗口
   if (mainWindow === null) {
     createWindow();
+  }
+});
+
+// 监听打开新的页面
+ipcMain.on('openBlankUrl', function (event, url) {
+  var exec = require('child_process').exec;
+  switch (process.platform) {
+    case 'darwin':
+      exec('open ' + url);
+      break;
+    case 'win32':
+      exec('start ' + url);
+      break;
+    default:
+      exec('xdg-open', [url]);
   }
 });

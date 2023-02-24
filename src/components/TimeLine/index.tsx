@@ -1,8 +1,6 @@
-import { Modal } from 'antd';
 import { useEffect, useState } from 'react';
 const dayjs = require('dayjs');
 const duration = require('dayjs/plugin/duration');
-const localStorage = require('localStorage');
 
 interface Props {
   goOffTime: string | null;
@@ -11,6 +9,9 @@ interface Props {
 }
 dayjs.extend(duration);
 // 获取上班时间
+let isOff = false;
+let formatNowDate = '';
+
 const TimeLine: React.FC<Props> = (props) => {
   let { show = true, mini = false, goOffTime } = props;
   let [nowDateTime, setNowDateTime] = useState(new Date());
@@ -29,6 +30,7 @@ const TimeLine: React.FC<Props> = (props) => {
     // 下班时间
     // 当前时间
     let nowDate = dayjs(nowDateTime);
+    formatNowDate = nowDate.format('YYYY-MM-DD HH:mm:ss');
     let curWeekDay = dayjs(nowDateTime).day();
     let offSaturDay = dayjs
       .duration(saturDay.diff(nowDate))
@@ -39,6 +41,9 @@ const TimeLine: React.FC<Props> = (props) => {
     let offTimeValue = dayjs
       .duration(goOffDate.diff(nowDate))
       .format('HH小时 mm分钟 ss秒');
+
+    // 当天是否下班
+    isOff = dayjs(goOffDate).isBefore(nowDate); // 默认毫秒
 
     setOffSaturDay(offSaturDay);
     setOffSunDay(offSunDay);
@@ -60,30 +65,44 @@ const TimeLine: React.FC<Props> = (props) => {
     color: '#EB455F',
     fontSize: '20px',
   };
-
+  const nowTimeStyle = {
+    color: '#F94A29',
+    fontSize: '20px',
+  };
   // 是否休息日
   const isRestDay = restDay === 6 || restDay === 0;
   const offStarDayDom = !isRestDay && (
     <div style={textStyle}>
-      距离<strong style={timeStyle}>周六</strong>还有 <span style={timeStyle}>{offSaturDay}</span>
+      距离<strong style={timeStyle}>周六</strong>还有{' '}
+      <span style={timeStyle}>{offSaturDay}</span>
       !!!
     </div>
   );
   const offSunDayDom = !isRestDay && (
     <div style={textStyle}>
-      距离<strong style={timeStyle}>周日</strong>还有 <span style={timeStyle}>{offSunDay}</span>
+      距离<strong style={timeStyle}>周日</strong>还有{' '}
+      <span style={timeStyle}>{offSunDay}</span>
       !!!
     </div>
   );
   // 距离下班时间
-  const offDayDom = !isRestDay && (
+  const offDayDom = !isOff && !isRestDay && (
     <div style={textStyle}>
-      距离<strong style={timeStyle}>下班</strong>还有 <span style={timeStyle}>{offTime}</span>
+      距离<strong style={timeStyle}>下班</strong>还有{' '}
+      <span style={timeStyle}>{offTime}</span>
       !!!
+    </div>
+  );
+  // 已经下班！！！！
+  const hasOffDayDom = isOff && !isRestDay && (
+    <div style={textStyle}>
+      你看看都几点了！！！！已经过下班时间，快下班吧不要卷了~~
     </div>
   );
   return (
     <div>
+      <h1 style={nowTimeStyle}>当前时间：{formatNowDate}</h1>
+      <strong>{hasOffDayDom}</strong>
       {/* 距离下班时间 */}
       {/* 距离周六时间 */}
       <div>{offStarDayDom}</div>

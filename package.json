@@ -6,15 +6,15 @@
   "author": "kaixin.yuan <szaf93671@126.com>",
   "main": "build/main.js",
   "scripts": {
-    "dev": "concurrently \"cross-env UMI_ENV=pre max dev\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron public/main.js\"",
-    "start": "max build && cross-env NODE_ENV=production electron build/main.js",
-    "dist": "max build && electron-builder --mac",
-    "dev:umi": "max dev",
     "build:umi": "max build",
+    "dev": "concurrently \"cross-env UMI_ENV=pre max dev\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron public/main.js\"",
+    "dev:umi": "max dev",
+    "dist": "max build && electron-builder --mac",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "prepare": "husky install",
-    "setup": "max setup"
+    "setup": "max setup",
+    "start": "max build && cross-env NODE_ENV=production electron build/main.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -49,6 +49,17 @@
     "directories": {
       "output": "dist"
     },
-    "mac": {}
+    "mac": {},
+    "win": {
+      "target": [
+        "nsis",
+        "7z",
+        "zip"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

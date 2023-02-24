@@ -5,7 +5,7 @@ import styles from './index.less';
 
 const HomePage: React.FC = () => {
   const { name } = useModel('global');
-  
+
   return (
     <div className={styles.container}>
       <Guide name={trim(name)} />

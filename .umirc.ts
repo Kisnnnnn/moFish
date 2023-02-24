@@ -1,6 +1,7 @@
 import { defineConfig } from '@umijs/max';
-
+const path = require('path');
 const isDev = process.env.NODE_ENV === 'development';
+
 export default defineConfig({
   alias: {},
   antd: {},
@@ -53,6 +54,10 @@ export default defineConfig({
       name: '翻译',
       path: '/translate',
       component: './Translate',
+    },
+    {
+      path: '/translate/set',
+      component: './Translate/set',
     },
     {
       name: '设置工作时间',

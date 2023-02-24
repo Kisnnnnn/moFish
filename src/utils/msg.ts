@@ -5,12 +5,17 @@ const msgTransErr = (content?: string) =>
     content || '翻译出错了，请查看README或者是否翻译APP ID配置是否配置准确',
   );
 
-const loading = (content?: string) =>
+const loading = (content?: string, key?: string) =>
   message.loading({
-    key: 'loading',
+    key: key || 'loading',
     content,
   });
 
 const closeLoading = () => message.destroy('loading');
 
-export { msgTransErr, loading, closeLoading };
+const msgSuccess = (content?: string, key?: string) =>
+  message.success({
+    key: key || 'loading',
+    content,
+  });
+export { msgTransErr, loading, closeLoading, msgSuccess };
