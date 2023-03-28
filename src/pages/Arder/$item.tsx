@@ -1,6 +1,6 @@
 import { useParams } from '@umijs/max';
 import { PageContainer } from '@ant-design/pro-components';
-const arder: React.FC = (props: any) => {
+const Arder: React.FC = () => {
   const { item } = useParams();
   return (
     <PageContainer>
@@ -11,4 +11,4 @@ const arder: React.FC = (props: any) => {
   );
 };
 
-export default arder;
+export default Arder;

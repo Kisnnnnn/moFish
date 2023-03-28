@@ -10,4 +10,24 @@ const openUrl = function (url: string) {
   send('openBlankUrl', url);
 };
 
-export { send, openUrl };
+const setVal = async (key: string, val: any) => {
+  return await ipcRenderer.invoke('setVal', key, val);
+};
+
+const getVal = async (key: string, defaultVal?: any) => {
+  return await ipcRenderer.invoke('getVal', key, defaultVal);
+};
+
+const clearVal = async () => {
+  return await ipcRenderer.invoke('clearVal');
+};
+
+const delVal = async (key: string) => {
+  return await ipcRenderer.invoke('delVal', key);
+};
+
+const hasVal = async (key: string) => {
+  return await ipcRenderer.invoke('hasVal', key);
+};
+
+export { send, openUrl, setVal, getVal, clearVal, delVal, hasVal };

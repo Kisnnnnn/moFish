@@ -3,14 +3,11 @@ import { useEffect, useState } from 'react';
 import { msgSuccess, msgTransErr } from '@/utils/msg';
 import { history } from '@umijs/max';
 import { ipcRenderer } from '@/constants';
+import { getVal, setVal } from '@/utils/electron/common';
 
-const localStorage = require('localStorage');
-const tranlateAppId = localStorage.getItem('tranlateAppId');
-const tranlateScrcetKey = localStorage.getItem('tranlateScrcetKey');
-
-const setTranslateApi: React.FC = () => {
-  const [appId, setAppId] = useState(tranlateAppId);
-  const [scrcetKey, setScrcetKey] = useState(tranlateScrcetKey);
+const SetTranslateApi: React.FC = () => {
+  const [appId, setAppId] = useState('');
+  const [scrcetKey, setScrcetKey] = useState('');
 
   // 去github查看说明文档
   const goGuide = () => {
@@ -20,18 +17,29 @@ const setTranslateApi: React.FC = () => {
     );
   };
   // 存储翻译
-  const saveBuiduApi = () => {
+  const saveBuiduApi = async () => {
     if (!appId || !scrcetKey) {
       msgTransErr('请输入配置项');
       return;
     }
-    localStorage.setItem('tranlateAppId', appId);
-    localStorage.setItem('tranlateScrcetKey', scrcetKey);
-    scrcetKey && appId && msgSuccess('设置成功!');
+    await setVal('tranlateAppId', appId);
+    await setVal('tranlateScrcetKey', scrcetKey);
+    if (scrcetKey && appId) {
+      msgSuccess('设置成功!');
+    }
     setTimeout(() => {
       history.go(-1);
     }, 1000);
   };
+
+  useEffect(() => {
+    getVal('tranlateAppId').then((val) => {
+      setAppId(val);
+    });
+    getVal('tranlateScrcetKey').then((val) => {
+      setScrcetKey(val);
+    });
+  }, []);
 
   return (
     <Space>
@@ -75,4 +83,4 @@ const setTranslateApi: React.FC = () => {
     </Space>
   );
 };
-export default setTranslateApi;
+export default SetTranslateApi;

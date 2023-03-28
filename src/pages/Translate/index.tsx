@@ -39,17 +39,22 @@ const Translate: React.FC = (props: any) => {
   // 中翻译英文
   const chnToEnglish = async () => {
     let data = await sendText(chnText, 'en', {});
-    const { dst, src } = data || {};
+    const { dst } = data || {};
 
-    dst && setEnglishText(dst);
+    if (dst) {
+      setEnglishText(dst);
+    }
   };
   // 英文翻译中
-  const EnglishToChn = async () => {
+  const englishToChn = async () => {
     let data = await sendText(englishText, 'zh', {});
-    const { dst, src } = data || {};
+    const { dst } = data || {};
 
-    dst && setChnText(dst);
+    if (dst) {
+      setChnText(dst);
+    }
   };
+
   // 设置
   const goSet = () => {
     history.push('/translate/set');
@@ -69,10 +74,12 @@ const Translate: React.FC = (props: any) => {
         ></TextArea>
         <div className="trans-btns">
           <Button type="primary" size="large" onClick={chnToEnglish}>
-            <DownOutlined /> 中翻英
+            <DownOutlined />
+            中翻英
           </Button>
-          <Button type="primary" size="large" onClick={EnglishToChn}>
-            <UpOutlined /> 英翻中
+          <Button type="primary" size="large" onClick={englishToChn}>
+            <UpOutlined />
+            英翻中
           </Button>
         </div>
         <TextArea

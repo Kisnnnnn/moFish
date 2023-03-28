@@ -1,5 +1,4 @@
 import { defineConfig } from '@umijs/max';
-const path = require('path');
 const isDev = process.env.NODE_ENV === 'development';
 
 export default defineConfig({
@@ -19,6 +18,11 @@ export default defineConfig({
     // 关闭国际化
     locale: false,
   },
+  headScripts: [
+    {
+      src: '/head/index.js',
+    },
+  ],
   routes: [
     {
       path: '/',
@@ -30,16 +34,6 @@ export default defineConfig({
       path: '/home',
       component: './Home',
     },
-    // {
-    //   name: '权限演示',
-    //   path: '/access',
-    //   component: './Access',
-    // },
-    // {
-    //   name: 'CRUD 示例',
-    //   path: '/table',
-    //   component: './Table',
-    // },
     {
       name: '玩具',
       icon: 'SmileOutlined',
@@ -66,7 +60,7 @@ export default defineConfig({
       name: '设置工作时间',
       path: '/settime',
       icon: 'SettingOutlined',
-      component: './Time',
+      component: './SetTime',
     },
     {
       path: '/*',

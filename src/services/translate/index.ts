@@ -15,8 +15,8 @@ export async function sentBaiDuTranlateText(
     appid: localStorage.getItem('tranlateAppId'),
     key: localStorage.getItem('tranlateScrcetKey'),
   };
-  // appid: '20230222001571068',
-  // key: 'COS5jfsZ7Ss2AcMSeSef',
+  // appid: 20230222001571068,
+  // key: COS5jfsZ7Ss2AcMSeSef,
   const salt = parseInt((Math.random() * 1000000000).toString());
   const sign = md5(BAIDU_INFO.appid + params.q + salt + BAIDU_INFO.key);
   const requestParams = encodeURI(

@@ -1,14 +1,6 @@
 // 全局共享数据示例
-import { useState } from 'react';
 import { sentBaiDuTranlateText } from '@/services/translate';
 import { msgTransErr, loading, closeLoading } from '@/utils/msg';
-interface loadingInstance {
-  destroy(key?: React.Key): void;
-}
-interface loading {
-  msg: string;
-  targetName: string;
-}
 
 export default {
   state: {
@@ -16,7 +8,7 @@ export default {
     targetName: '123',
   },
   effects: {
-    *sendText(payload: any, { call, put }: any): any {
+    *sendText(payload: any): any {
       loading();
 
       const { q, target, options } = payload;

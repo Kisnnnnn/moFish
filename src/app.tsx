@@ -5,7 +5,7 @@ export async function getInitialState(): Promise<{ name: string }> {
   return { name: '@umijs/max' };
 }
 
-export const layout: RunTimeLayoutConfig = (initialState) => {
+export const layout: RunTimeLayoutConfig = () => {
   return {
     logo: './mofish/img_mofish_1.jpg',
     title: '摸鱼moFish',

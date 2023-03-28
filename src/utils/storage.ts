@@ -1,5 +1,29 @@
 import React from 'react';
 
+// 对于初始化和更新的值进行处理
+const valueFormat = (value: any): any => {
+  if (value instanceof Function) {
+    throw new Error('function is not allowed');
+  }
+  if (typeof value === 'symbol') {
+    throw new Error('symbol is not allowed');
+  }
+  if (typeof value === 'object') {
+    return JSON.stringify(value);
+  }
+  return value;
+};
+// 对 localStorage 中取出的数据进行处理
+const localFormat = (value: string): any => {
+  let reValue: any;
+  try {
+    reValue = JSON.parse(value);
+  } catch {
+    reValue = value;
+  }
+  return reValue;
+};
+
 export const useStorage = (key: string, val: any) => {
   // 获取 localStorage 对应键值
   let local = window.localStorage.getItem(key) as string | null;
@@ -28,26 +52,3 @@ export const useStorage = (key: string, val: any) => {
   // 对外暴露 react 状态 和 react reducer
   return [state, setState];
 };
-// 对于初始化和更新的值进行处理
-function valueFormat(value: any): any {
-  if (value instanceof Function) {
-    throw new Error('function is not allowed');
-  }
-  if (typeof value === 'symbol') {
-    throw new Error('symbol is not allowed');
-  }
-  if (typeof value === 'object') {
-    return JSON.stringify(value);
-  }
-  return value;
-}
-// 对 localStorage 中取出的数据进行处理
-function localFormat(value: string): any {
-  let reValue: any;
-  try {
-    reValue = JSON.parse(value);
-  } catch {
-    reValue = value;
-  }
-  return reValue;
-}

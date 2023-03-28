@@ -11,6 +11,7 @@
     "dev:umi": "max dev",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
+    "lint": "max lint --fix",
     "linux": "electron-builder --linux",
     "mac": "max build && electron-builder --mac",
     "prepare": "husky install",
@@ -21,10 +22,12 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ant-design/plots": "^1.2.5",
     "@ant-design/pro-components": "^2.0.1",
     "@umijs/max": "^4.0.52",
     "antd": "^5.0.0",
     "dayjs": "^1.11.7",
+    "electron-store": "^8.1.0",
     "js-md5": "^0.7.3",
     "localStorage": "^1.0.4",
     "wait-on": "^7.0.1"
@@ -50,14 +53,22 @@
     "files": [
       "build/**/*"
     ],
+    "asarUnpack": [
+      "dist/**"
+    ],
     "directories": {
       "output": "dist"
     },
-    "linux": {
-      "icon": "public/logo/icon_round.png"
-    },
     "mac": {
-      "icon": "public/logo/icon_round.png"
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "icon": "public/logo/icon_round.png",
+      "target": {
+        "arch": [
+          "x64",
+          "arm64"
+        ],
+        "target": "dmg"
+      }
     },
     "win": {
       "icon": "public/logo/icon_round.png",

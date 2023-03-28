@@ -1,5 +1,5 @@
 import SetRestTime from '@/components/SetRestTime';
-const TimeFrame: React.FC = (props) => {
+const TimeFrame: React.FC = () => {
   return (
     <div>
       <SetRestTime />
