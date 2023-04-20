@@ -1,5 +1,5 @@
 import { Row, Col } from 'antd';
-import { Pie } from '@ant-design/plots';
+import { Pie, Heatmap } from '@ant-design/plots';
 import './index.less';
 interface Props {
   data: TimeDate;
@@ -8,11 +8,11 @@ let remianTimeText = '';
 
 const TimeCharts: React.FC<Props> = (props) => {
   const { data } = props;
-  const { offDay, workTime, isOff, remianTime, allWorkTime } = data;
+  const { offDay, workTime, isOff, remianTime, restDay } = data;
 
-  console.log(allWorkTime);
-  console.log(remianTime);
-  console.log(workTime);
+  // console.log(allWorkTime);
+  // console.log(remianTime);
+  // console.log(workTime);
 
   let bulletData = [
     {
@@ -64,6 +64,43 @@ const TimeCharts: React.FC<Props> = (props) => {
     tooltip: false,
     interactions: false,
   };
+  let heatMapData: { value: string; name: string; week: string }[] = [];
+  let WEEK_ENUM = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  for (let o = 1; o < 8; o++) {
+    let value = '摸鱼';
+
+    if (o > 5) {
+      value = '休息';
+    } else if (restDay < o) {
+      value = '加油';
+    } else if (restDay === o) {
+      value = 'ing';
+    }
+    heatMapData.push({
+      week: WEEK_ENUM[o - 1],
+      value,
+      name: '工作日',
+    });
+  }
+  const configHeatmap = {
+    data: heatMapData,
+    xField: 'week',
+    yField: 'name',
+    colorField: 'value',
+    shape: 'square',
+    color: ['#dddddd', '#5fa4cd', '#2e7ab6', '#57C5B6'],
+    axis: {
+      line: null,
+    },
+    label: {
+      style: {
+        fill: '#fff',
+        shadowBlur: 2,
+        shadowColor: 'rgba(0, 0, 0, .45)',
+      },
+    },
+  };
+
   return (
     <div>
       <Row gutter={[16, 16]}>
@@ -79,12 +116,12 @@ const TimeCharts: React.FC<Props> = (props) => {
           )}
           {isOff && (
             <div className="off">
-              <img className="offimg" src="/offwork/off1.jpg" alt="" />
+              <img className="offimg" src="offwork/off1.jpg" alt="" />
             </div>
           )}
         </Col>
-        <Col className="item" span={12}>
-          1
+        <Col className="item heartmap" span={12}>
+          <Heatmap className="heartmap" {...configHeatmap} />
         </Col>
         <Col className="item" span={12}>
           1

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { msgSuccess, msgTransErr } from '@/utils/msg';
 import { history } from '@umijs/max';
 import { ipcRenderer } from '@/constants';
-import { getVal, setVal } from '@/utils/electron/common';
+import { getTranslate, putTranslate } from '@/utils/db';
 
 const SetTranslateApi: React.FC = () => {
   const [appId, setAppId] = useState('');
@@ -22,8 +22,10 @@ const SetTranslateApi: React.FC = () => {
       msgTransErr('请输入配置项');
       return;
     }
-    await setVal('tranlateAppId', appId);
-    await setVal('tranlateScrcetKey', scrcetKey);
+    await putTranslate({
+      tranlateAppId: appId,
+      tranlateScrcetKey: scrcetKey,
+    });
     if (scrcetKey && appId) {
       msgSuccess('设置成功!');
     }
@@ -33,12 +35,12 @@ const SetTranslateApi: React.FC = () => {
   };
 
   useEffect(() => {
-    getVal('tranlateAppId').then((val) => {
-      setAppId(val);
-    });
-    getVal('tranlateScrcetKey').then((val) => {
-      setScrcetKey(val);
-    });
+    getTranslate().then(
+      (data: { tranlateAppId?: string; tranlateScrcetKey?: string }) => {
+        setAppId(data.tranlateAppId || '');
+        setScrcetKey(data.tranlateScrcetKey || '');
+      },
+    );
   }, []);
 
   return (

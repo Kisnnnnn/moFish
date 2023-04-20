@@ -15,13 +15,15 @@ const Footer: React.FC<Props> = ({ prop }) => {
       style={{ marginBottom: '5px' }}
       preview={false}
       width={40}
-      src="/logo/icon.jpeg"
+      src="logo/icon.jpeg"
     />
   );
   const textDom = (
     <div>
       <Tooltip title="点击查看">
-        <Typography.Link onClick={goGithub}>欢迎 Star🌟 @Guihub 摸鱼小助手</Typography.Link>
+        <Typography.Link onClick={goGithub}>
+          欢迎 Star🌟 @Guihub 摸鱼小助手
+        </Typography.Link>
       </Tooltip>
     </div>
   );

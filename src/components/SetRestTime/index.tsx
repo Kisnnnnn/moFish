@@ -1,7 +1,7 @@
 import { Form, TimePicker, Button } from 'antd';
 import { history, useModel } from '@umijs/max';
 import { msgSuccess, msgTransErr } from '@/utils/msg';
-import { getVal, setVal } from '@/utils/electron/common';
+import { getInfo, putInfo } from '@/utils/db';
 import { useEffect, useState } from 'react';
 const dayjs = require('dayjs');
 
@@ -11,22 +11,18 @@ const SetRestTime: React.FC = () => {
   const dayDate = useModel('timeModel');
 
   useEffect(() => {
-    getVal('goOnTime').then((val) => {
-      setOnTime(dayjs('2022-10-10 ' + val));
-    });
-    getVal('goOffTime').then((val) => {
-      setOffTime(dayjs('2022-10-10 ' + val));
+    getInfo().then((data: { goOnTime?: string; goOffTime?: string }) => {
+      setOnTime(dayjs('2022-10-10 ' + (data.goOnTime || '')));
+      setOffTime(dayjs('2022-10-10 ' + (data.goOffTime || '')));
     });
   }, []);
 
   const onChange = (value: any) => {
     setOnTime(value);
-    getVal('goOnTime', value);
   };
 
   const onOffChange = (value: any) => {
     setOffTime(value);
-    getVal('goOffTime', value);
   };
 
   const submit = async () => {
@@ -34,8 +30,10 @@ const SetRestTime: React.FC = () => {
     if (next) {
       return msgTransErr('上班时间要比下班时间早呀~');
     }
-    await setVal('goOnTime', onTime.format('HH:mm'));
-    await setVal('goOffTime', offTime.format('HH:mm'));
+    await putInfo({
+      goOnTime: onTime.format('HH:mm'),
+      goOffTime: offTime.format('HH:mm'),
+    });
     msgSuccess('设置成功！');
     dayDate.updateSetTimefn();
     history.push('/');

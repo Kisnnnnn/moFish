@@ -1,4 +1,4 @@
-import { getVal } from '@/utils/electron/common';
+import { getInfo } from '@/utils/db';
 import { useState, useEffect } from 'react';
 const dayjs = require('dayjs');
 const duration = require('dayjs/plugin/duration');
@@ -22,11 +22,9 @@ export default () => {
   const [onTime, setOnTime] = useState(dayjs());
   const [offTime, setOffTime] = useState(dayjs());
   const updateSetTimefn = () => {
-    getVal('goOnTime').then((val) => {
-      setOnTime(val);
-    });
-    getVal('goOffTime').then((val) => {
-      setOffTime(val);
+    getInfo().then((data: { goOnTime?: string; goOffTime?: string }) => {
+      setOnTime(data.goOnTime);
+      setOffTime(data.goOffTime);
     });
   };
   useEffect(() => {

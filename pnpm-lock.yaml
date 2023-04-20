@@ -8,16 +8,17 @@ specifiers:
   '@types/react-dom': ^18.0.0
   '@umijs/max': ^4.0.52
   antd: ^5.0.0
+  conf: '10.2'
   cross-env: ^7.0.3
   dayjs: ^1.11.7
+  dexie: ^3.2.3
+  dexie-react-hooks: ^1.1.3
   electron: ^23.0.0
   electron-builder: ^23.6.0
-  electron-store: ^8.1.0
   husky: ^8.0.1
   joi: ^17.8.3
   js-md5: ^0.7.3
   lint-staged: ^13.0.3
-  localStorage: ^1.0.4
   prettier: ^2.7.1
   prettier-plugin-organize-imports: ^2
   prettier-plugin-packagejson: ^2
@@ -30,10 +31,11 @@ dependencies:
   '@ant-design/pro-components': 2.3.57_antd@5.2.2
   '@umijs/max': 4.0.52_vftga3igpjiwrcdvxb4li5isbm
   antd: 5.2.2
+  conf: 10.2.0
   dayjs: 1.11.7
-  electron-store: 8.1.0
+  dexie: 3.2.3
+  dexie-react-hooks: 1.1.3_xy4ln3hixkcndviimokgtwam7a
   js-md5: 0.7.3
-  localStorage: 1.0.4
   wait-on: 7.0.1
 
 devDependencies:
@@ -6138,6 +6140,22 @@ packages:
   /detect-node/2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
 
+  /dexie-react-hooks/1.1.3_xy4ln3hixkcndviimokgtwam7a:
+    resolution: {integrity: sha512-bXXE1gfYtfuVYTNiOlyam+YVaO8KaqacgRuxFuP37YtpS6o/jxT6KOl5h+hhqY36s0UavlHWbL+HWJFMcQumIg==}
+    peerDependencies:
+      '@types/react': '>=16'
+      dexie: '>=3.1.0-alpha.1 <5.0.0'
+      react: '>=16'
+    dependencies:
+      '@types/react': 18.0.28
+      dexie: 3.2.3
+    dev: false
+
+  /dexie/3.2.3:
+    resolution: {integrity: sha512-iHayBd4UYryDCVUNa3PMsJMEnd8yjyh5p7a+RFeC8i8n476BC9wMhVvqiImq5zJZJf5Tuer+s4SSj+AA3x+ZbQ==}
+    engines: {node: '>=6.0'}
+    dev: false
+
   /diffie-hellman/5.0.3:
     resolution: {integrity: sha512-kqag/Nl+f3GwyK25fhUMYj81BUOrZ9IuJsjIcDE5icNM9FJHAVm3VcUDxdLPoQtTuUylWm6ZIknYJwwaPxsUzg==}
     dependencies:
@@ -6389,13 +6407,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /electron-store/8.1.0:
-    resolution: {integrity: sha512-2clHg/juMjOH0GT9cQ6qtmIvK183B39ZXR0bUoPwKwYHJsEF3quqyDzMFUAu+0OP8ijmN2CbPRAelhNbWUbzwA==}
-    dependencies:
-      conf: 10.2.0
-      type-fest: 2.19.0
-    dev: false
 
   /electron-to-chromium/1.4.303:
     resolution: {integrity: sha512-XaqiQhVsGO5ymf/Lg6XEGpv2h8b5AFqQDQ9fQckolNP2VtD2VL1pn1TIx1SSYsf0srfXVi2Sm7n/K3slJSX3ig==}
@@ -8531,11 +8542,6 @@ packages:
   /local-pkg/0.4.3:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==}
     engines: {node: '>=14'}
-    dev: false
-
-  /localStorage/1.0.4:
-    resolution: {integrity: sha512-r35zrihcDiX+dqWlJSeIwS9nrF95OQTgqMFm3FB2D/+XgdmZtcutZOb7t0xXkhOEM8a9kpuu7cc28g1g36I5DQ==}
-    engines: {node: '>= v0.2.0'}
     dev: false
 
   /locate-path/3.0.0:
@@ -12441,11 +12447,6 @@ packages:
   /type-fest/0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
-    dev: false
-
-  /type-fest/2.19.0:
-    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
-    engines: {node: '>=12.20'}
     dev: false
 
   /type/1.2.0:

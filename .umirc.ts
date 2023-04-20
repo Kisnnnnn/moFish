@@ -20,7 +20,7 @@ export default defineConfig({
   },
   headScripts: [
     {
-      src: '/head/index.js',
+      src: './head/index.js',
     },
   ],
   routes: [

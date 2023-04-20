@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/kisn/.nvm/versions/node/v16.16.0/bin/node /opt/homebrew/Cellar/yarn/1.22.17/libexec/bin/yarn.js dev:ele
+  /Users/kisn/.nvm/versions/node/v16.16.0/bin/node /opt/homebrew/Cellar/yarn/1.22.17/libexec/bin/yarn.js mac
 
 PATH: 
-  /Users/kisn/Library/pnpm:/Users/kisn/.nvm/versions/node/v16.16.0/bin:/Users/kisn/.pnpm-store/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/kisn/.fig/bin
+  /Users/kisn/Library/pnpm:/Users/kisn/.nvm/versions/node/v16.16.0/bin:/Users/kisn/.pnpm-store/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/kisn/Library/pnpm:/Users/kisn/.nvm/versions/node/v16.16.0/bin:/Users/kisn/.pnpm-store/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/kisn/.fig/bin
 
 Yarn version: 
   1.22.17
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  SyntaxError: /Users/kisn/Desktop/leetcode/umi/package.json: Unexpected string in JSON at position 468
+  SyntaxError: /Users/kisn/Desktop/leetcode/umi/moFish/package.json: Unexpected token { in JSON at position 1771
       at JSON.parse (<anonymous>)
       at /opt/homebrew/Cellar/yarn/1.22.17/libexec/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -30,23 +30,29 @@ npm manifest:
     "author": "kaixin.yuan <szaf93671@126.com>",
     "main": "build/main.js",
     "scripts": {
-      "build": "max build",
-      "dev": "max dev",
-      "dev:ele": "concurrently \"cross-env UMI_ENV=pre npm run start\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron main.js\"",
-      "start:ele": "max build && cross-env NODE_ENV=production electron build/main.js"
-      "dist": "max build && electron-builder --mac",
-      "ele": "electron . & npm run start",
+      "build:umi": "max build",
+      "dev": "concurrently \"cross-env UMI_ENV=pre max dev\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron public/main.js\"",
+      "dev:umi": "max dev",
       "format": "prettier --cache --write .",
       "postinstall": "max setup",
+      "lint": "max lint --fix",
+      "linux": "electron-builder --linux",
+      "mac": "max build && electron-builder --mac",
       "prepare": "husky install",
       "setup": "max setup",
-      "start": "npm run dev",
+      "start": "max build && cross-env NODE_ENV=production electron build/main.js",
+      "win32": "max build && electron-builder --win --ia32",
+      "win64": "max build && electron-builder --win --x64"
     },
     "dependencies": {
       "@ant-design/icons": "^4.7.0",
+      "@ant-design/plots": "^1.2.5",
       "@ant-design/pro-components": "^2.0.1",
       "@umijs/max": "^4.0.52",
       "antd": "^5.0.0",
+      "conf": "^11.0.1",
+      "dayjs": "^1.11.7",
+      "electron-store": "^7",
       "js-md5": "^0.7.3",
       "wait-on": "^7.0.1"
     },
@@ -67,13 +73,58 @@ npm manifest:
     "build": {
       "productName": "mofish",
       "appId": "mofish",
+      "asar": false,
+      "extraFiles": [
+        {
+          "from": "node_modules/electron-store/**/*",
+          "to": "node_modules/electron-store"
+        }   {
+          "from": "node_modules/conf/**/*",
+          "to": "node_modules/conf"
+        }
+      ],
       "files": [
         "build/**/*"
+      ],
+      "asarUnpack": [
+        "dist/**"
       ],
       "directories": {
         "output": "dist"
       },
-      "mac": {}
+      "mac": {
+        "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+        "icon": "public/logo/icon_round.png",
+        "target": {
+          "arch": [
+            "x64",
+            "arm64"
+          ],
+          "target": "dmg"
+        }
+      },
+      "win": {
+        "icon": "public/logo/icon_round.png",
+        "target": [
+          {
+            "target": "nsis",
+            "arch": [
+              "x64",
+              "ia32"
+            ]
+          }
+        ]
+      },
+      "nsis": {
+        "allowElevation": true,
+        "installerIcon": "public/logo/logo.png",
+        "uninstallerIcon": "public/logo/logo.png",
+        "installerHeaderIcon": "public/logo/logo.png",
+        "oneClick": false,
+        "allowToChangeInstallationDirectory": true,
+        "createDesktopShortcut": true,
+        "createStartMenuShortcut": true
+      }
     }
   }
 

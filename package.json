@@ -26,10 +26,11 @@
     "@ant-design/pro-components": "^2.0.1",
     "@umijs/max": "^4.0.52",
     "antd": "^5.0.0",
+    "conf": "10.2",
     "dayjs": "^1.11.7",
-    "electron-store": "^8.1.0",
+    "dexie": "^3.2.3",
+    "dexie-react-hooks": "^1.1.3",
     "js-md5": "^0.7.3",
-    "localStorage": "^1.0.4",
     "wait-on": "^7.0.1"
   },
   "devDependencies": {
@@ -50,8 +51,11 @@
     "productName": "mofish",
     "appId": "mofish",
     "asar": false,
+    "extraFiles": [],
     "files": [
-      "build/**/*"
+      "build/**/*",
+      "node_modules/electron-store/**/*",
+      "node_modules/conf/**/*"
     ],
     "asarUnpack": [
       "dist/**"

@@ -1,18 +1,8 @@
-const Store = require('electron-store');
+// const Store = require('electron-store');
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const isDev = process.env.NODE_ENV === 'development';
 // 保持window对象的全局引用,避免JavaScript对象被垃圾回收时,窗口被自动关闭.
 let mainWindow;
-
-// store
-const option = {
-  name: 'config', //文件名称,默认 config
-  fileExtension: 'json', //文件后缀,默认json
-  cwd: app.getPath('userData'), //文件位置,尽量不要动，默认情况下，它将通过遵循系统约定来选择最佳位置。C:\Users\xxx\AppData\Roaming\test\config.json
-  clearInvalidConfig: true, // 发生 SyntaxError  则清空配置,
-};
-
-const store = new Store(option);
 
 function createWindow() {
   //创建浏览器窗口,宽高自定义具体大小你开心就好
@@ -31,7 +21,7 @@ function createWindow() {
   } else {
     Menu.setApplicationMenu(null);
     // 打开开发者工具，默认不打开
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
     mainWindow.loadFile(`${__dirname}/index.html`);
   }
 
@@ -72,24 +62,4 @@ ipcMain.on('openBlankUrl', function (event, url) {
     default:
       exec('xdg-open', [url]);
   }
-});
-
-ipcMain.handle('setVal', (e, key, val) => {
-  return store.set(key, val);
-});
-
-ipcMain.handle('getVal', (e, key, defaultVal) => {
-  return store.get(key, defaultVal);
-});
-
-ipcMain.handle('clearVal', (e) => {
-  return store.clear();
-});
-
-ipcMain.handle('delVal', (e, key) => {
-  return store.delete(key);
-});
-
-ipcMain.handle('hasVal', (e, key) => {
-  return store.hasVal(key);
 });
