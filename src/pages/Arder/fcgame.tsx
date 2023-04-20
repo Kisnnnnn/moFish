@@ -1,9 +1,10 @@
-import { Table, Button } from 'antd';
+import { Table, Button, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { history } from '@umijs/max';
 import { ipcRenderer } from '@/constants';
 import './css/fcgame.less';
-
+import { openUrl } from '@/utils/electron/common';
+import { GithubOutlined } from '@ant-design/icons';
 interface DataType {
   key: string;
   player1: string;
@@ -89,6 +90,10 @@ const data: DataType[] = [
 
 const Arder: React.FC = () => {
   openFC();
+
+  const goGithub = () => {
+    openUrl('https://github.com/lucaschungzsj/fcgame');
+  };
   return (
     <div className="fcgame">
       <div className="header">
@@ -99,6 +104,14 @@ const Arder: React.FC = () => {
           再次打开游戏机
         </Button>
       </div>
+      <Tag
+        className="tag"
+        icon={<GithubOutlined />}
+        color="#3b5999"
+        onClick={goGithub}
+      >
+        开源来自@lucaschungzsj/fcgame
+      </Tag>
       <Table
         columns={columns}
         pagination={{
