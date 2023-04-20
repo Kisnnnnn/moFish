@@ -39,18 +39,21 @@ export default defineConfig({
       icon: 'SmileOutlined',
       path: '/arder',
       component: './Arder',
-      routes: [
-        {
-          path: ':item',
-          component: './Arder/$item',
-        },
-      ],
     },
     {
-      name: '翻译',
+      path: '/arder/fcgame',
+      component: './Arder/fcgame',
+    },
+    {
       icon: 'FieldStringOutlined',
       path: '/translate',
       component: './Translate',
+    },
+    {
+      name: '百度翻译',
+      icon: 'FieldStringOutlined',
+      path: '/toBaiDuTranslate',
+      component: './toBaiDuTranslate',
     },
     {
       path: '/translate/set',

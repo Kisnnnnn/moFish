@@ -1,8 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { connect, history } from '@umijs/max';
+import { connect } from '@umijs/max';
 import { Input, Button } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import './css/index.less';
+import { ipcRenderer } from '@/constants';
 import { useState } from 'react';
 const { TextArea } = Input;
 
@@ -57,7 +58,8 @@ const Translate: React.FC = (props: any) => {
 
   // 设置
   const goSet = () => {
-    history.push('/translate/set');
+    ipcRenderer.send('openTranslateWindow', 'https://fanyi.baidu.com/');
+    // history.push('/translate/set');
   };
   return (
     <PageContainer>
