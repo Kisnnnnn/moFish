@@ -56,6 +56,12 @@ export default defineConfig({
       component: './toBaiDuTranslate',
     },
     {
+      name: '彩票',
+      icon: 'FieldStringOutlined',
+      path: '/caipiao',
+      component: './CaiPiao',
+    },
+    {
       path: '/translate/set',
       component: './Translate/set',
     },

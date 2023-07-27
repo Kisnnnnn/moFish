@@ -20,6 +20,7 @@ const Guide: React.FC<Props> = (props) => {
   return (
     <Layout>
       <Row>
+        <div className="header-drag"></div>
         <Typography.Title level={3} className={styles.title}>
           欢迎使用 <strong>{name}</strong> ！
         </Typography.Title>
